@@ -31,7 +31,7 @@ func FindContact(c *gin.Context) { // Get model if exist
 
 func CreateContact(c *gin.Context) {
 	// Validate input
-	var input CreateContactInput
+	var input models.CreateContactInput
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -67,7 +67,7 @@ func UpdateContact(c *gin.Context) {
 	}
 
 	// Validate input
-	var input UpdateContactInput
+	var input models.UpdateContactInput
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
