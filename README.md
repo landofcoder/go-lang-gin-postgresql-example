@@ -24,7 +24,7 @@ Now let’s install [Gin](https://github.com/gin-gonic/gin) and [Gorm](https://g
 ## Setting up the server
 
 Let’s start by creating a Hello World server inside the main.go file:
-``
+```
 package main
 
 import (
@@ -41,7 +41,7 @@ func main() {
 
   r.Run()
 }
-``
+```
 
 To test it out, we’ll start our server by running the command below:
 ``go run main.go``
