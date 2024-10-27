@@ -1,10 +1,9 @@
 package controllers
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/landofcoder/go-lang-gin-postgresql-example/models"
+	"net/http"
 )
 
 // GET /contacts
@@ -32,28 +31,33 @@ func FindContact(c *gin.Context) { // Get model if exist
 func CreateContact(c *gin.Context) {
 	// Validate input
 	var input models.CreateContactInput
+	var existContact models.Contact
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	if err := models.DB.Where("email = ?", input.Email).First(&existContact).Error; err == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "E-mail address was exists!"})
+		return
+	} else {
+		// Create contact
+		contact := models.Contact{
+			FirstName:   input.FirstName,
+			LastName:    input.LastName,
+			PhoneNumber: input.PhoneNumber,
+			Email:       input.Email,
+			Company:     input.Company,
+			JobTitle:    input.JobTitle,
+			Address:     input.Address,
+			City:        input.City,
+			State:       input.State,
+			ZipCode:     input.ZipCode,
+			Country:     input.Country,
+			Tags:        input.Tags}
+		models.DB.Create(&contact)
+		c.JSON(http.StatusOK, gin.H{"data": contact})
+	}
 
-	// Create contact
-	contact := models.Contact{
-		FirstName:   input.FirstName,
-		LastName:    input.LastName,
-		PhoneNumber: input.PhoneNumber,
-		Email:       input.Email,
-		Company:     input.Company,
-		JobTitle:    input.JobTitle,
-		Address:     input.Address,
-		City:        input.City,
-		State:       input.State,
-		ZipCode:     input.ZipCode,
-		Country:     input.Country,
-		Tags:        input.Tags}
-	models.DB.Create(&contact)
-
-	c.JSON(http.StatusOK, gin.H{"data": contact})
 }
 
 // PATCH /contacts/:id
