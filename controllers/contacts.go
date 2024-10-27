@@ -18,16 +18,16 @@ func FindContacts(c *gin.Context) {
 
 // GET /contacts/:id
 // Find a contact
-func FindContact(c *gin.Context) {  // Get model if exist
+func FindContact(c *gin.Context) { // Get model if exist
 	var contact models.Contact
-  
+
 	if err := models.DB.Where("id = ?", c.Param("id")).First(&contact).Error; err != nil {
-	  c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-	  return
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
 	}
-  
-	c.JSON(http.StatusOK, gin.H{"data": book})
-  }
+
+	c.JSON(http.StatusOK, gin.H{"data": contact})
+}
 
 func CreateContact(c *gin.Context) {
 	// Validate input
@@ -39,19 +39,18 @@ func CreateContact(c *gin.Context) {
 
 	// Create contact
 	contact := models.Contact{
-		FirstName: input.FirstName, 
-		LastName: input.LastName, 
-		PhoneNumber: input.PhoneNumber, 
-		Email: input.Email,
-		Company: input.Company,
-		JobTitle: input.JobTitle,
-		Address: input.Address, 
-		City: input.City, 
-		State: input.State, 
-		ZipCode: input.ZipCode, 
-		Country: input.Country, 
-		Tags: input.Tags
-	}
+		FirstName:   input.FirstName,
+		LastName:    input.LastName,
+		PhoneNumber: input.PhoneNumber,
+		Email:       input.Email,
+		Company:     input.Company,
+		JobTitle:    input.JobTitle,
+		Address:     input.Address,
+		City:        input.City,
+		State:       input.State,
+		ZipCode:     input.ZipCode,
+		Country:     input.Country,
+		Tags:        input.Tags}
 	models.DB.Create(&contact)
 
 	c.JSON(http.StatusOK, gin.H{"data": contact})
@@ -63,19 +62,19 @@ func UpdateContact(c *gin.Context) {
 	// Get model if exist
 	var contact models.Contact
 	if err := models.DB.Where("id = ?", c.Param("id")).First(&contact).Error; err != nil {
-	  c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-	  return
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
 	}
-  
+
 	// Validate input
 	var input UpdateContactInput
 	if err := c.ShouldBindJSON(&input); err != nil {
-	  c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	  return
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-  
+
 	models.DB.Model(&contact).Updates(input)
-  
+
 	c.JSON(http.StatusOK, gin.H{"data": contact})
 }
 
@@ -85,11 +84,11 @@ func DeleteContact(c *gin.Context) {
 	// Get model if exist
 	var contact models.Contact
 	if err := models.DB.Where("id = ?", c.Param("id")).First(&contact).Error; err != nil {
-	  c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-	  return
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
 	}
-  
+
 	models.DB.Delete(&contact)
-  
+
 	c.JSON(http.StatusOK, gin.H{"data": true})
 }

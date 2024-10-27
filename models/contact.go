@@ -6,8 +6,8 @@ type Contact struct {
 	LastName    string `json:"last_name"`
 	PhoneNumber string `json:"phone_number"`
 	Email       string `json:"email" gorm:"unique"`
-	JobTitle	string `json:"job_title"`
-	Company		string `json:"company"`
+	JobTitle    string `json:"job_title"`
+	Company     string `json:"company"`
 	Address     string `json:"address"`
 	City        string `json:"city"`
 	State       string `json:"state"`
@@ -23,8 +23,8 @@ type CreateContactInput struct {
 	LastName    string `json:"last_name" binding:"required"`
 	PhoneNumber string `json:"phone_number"`
 	Email       string `json:"email" binding:"required"`
-	JobTitle	string `json:"job_title"`
-	Company		string `json:"company"`
+	JobTitle    string `json:"job_title"`
+	Company     string `json:"company"`
 	Address     string `json:"address"`
 	City        string `json:"City"`
 	State       string `json:"state"`
@@ -33,16 +33,16 @@ type CreateContactInput struct {
 	Tags        string `json:"tags"`
 }
 
-type struct UpdateContactInput {
-	FirstName  string `json:"fist_name"`
-	LastName string `json:"last_name"`
+type UpdateContactInput struct {
+	FirstName   string `json:"fist_name"`
+	LastName    string `json:"last_name"`
 	PhoneNumber string `json:"phone_number"`
-	Address string `json:"address"`
-	JobTitle string `json:"job_title"`
-	Company	string `json:"company"`
-	City string `json:"City"`
-	State string `json:"state"`
-	ZipCode string `json:"zip_code"`
-	Country string `json:"country"`
-	Tags string `json:"tags"`
+	Address     string `json:"address"`
+	JobTitle    string `json:"job_title"`
+	Company     string `json:"company"`
+	City        string `json:"City"`
+	State       string `json:"state"`
+	ZipCode     string `json:"zip_code"`
+	Country     string `json:"country"`
+	Tags        string `json:"tags"`
 }
