@@ -10,7 +10,7 @@ var DB *gorm.DB
 
 func ConnectDatabase() {
 
-	dsn := "host=localhost user=" + os.Getenv("POSTGRES_USER") + " password=" + os.Getenv("POSTGRES_PASSWORD") + " dbname=" + os.Getenv("POSTGRES_DB") + " port=" + os.Getenv("DB_POST") + " sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := "host=localhost user=" + os.Getenv("POSTGRES_USER") + " password=" + os.Getenv("POSTGRES_PASSWORD") + " dbname=" + os.Getenv("POSTGRES_DB") + " port=" + os.Getenv("DB_POST") + " sslmode=" + os.Getenv("SSLMODE") + " TimeZone=" + os.Getenv("TIMEZONE")
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
