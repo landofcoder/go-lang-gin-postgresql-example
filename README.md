@@ -51,7 +51,7 @@ The next thing we need to do is to build our database models.
 
 Model is a class (or structs in Go) that allows us to communicate with a specific table in our database. In Gorm, we can create our models by defining a Go struct. This model will contain the properties that represent fields in our database table. Since we’re trying to build a bookstore API, let’s create a Book model:
 
-``
+```
 \\models\contact.go
 package models
 
@@ -96,12 +96,12 @@ type struct UpdateContactInput {
 	Tags string `json:"tags"`
 }
 
-``
+```
 
 Next, we need to create a utility function called ConnectDatabase that allows us to create a connection to the database and migrate our model’s schema. 
 We can put this inside the setup.go file in our models module:
 
-``
+```
 // models/setup.go
 
 package models
@@ -130,10 +130,10 @@ func ConnectDatabase() {
 	DB = database
 }
 
-``
+```
 
 In main.go, we need to call the following function before we run our app:
-``
+```
 package main
 
 import (
@@ -149,7 +149,7 @@ func main() {
 
   r.Run()
 }
-``
+```
 
 ## Setting up the RESTful routes
 
@@ -170,14 +170,14 @@ file: ``controllers\contact.go`` with there functions:
 
 - run endpoint: ``/contacts``
 Return data:
-``
+```
 {
   "data": []
 }
-``
+```
 - send a POST request to ``/contacts`` endpoint with this request body:
 
-``
+```
 {
   "first_name": "Thuan",
   "last_name": "Luu",
@@ -192,10 +192,10 @@ Return data:
   "country": "Vietnam",
   "tags": "An Entrepreneur,Software Engineer,Saas,Golang,Reactjs,Magento,Shopify,Woocommerce,Wordpress"
 }
-``
+```
 
 The response should look like this:
-``
+```
 {
   "data": {
     "id": 1,
@@ -204,11 +204,11 @@ The response should look like this:
     ...
   }
 }
-``
+```
 
 - Let’s run the server and fetch ``/contacts/1`` to get the book we just created:
 
-``
+```
 {
   "data": {
     "id": 1,
@@ -217,12 +217,12 @@ The response should look like this:
     ...
   }
 }
-``
+```
 
 - Let’s test it out! Fire a PATCH request to the /contacts/:id endpoint to update the book title:
 
-``
+```
 {
   "company": "Bavaan"
 }
-``
+```
