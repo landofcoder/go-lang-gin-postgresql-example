@@ -226,3 +226,24 @@ The response should look like this:
   "company": "Bavaan"
 }
 ```
+
+The result should be as follows:
+```
+{
+  "data": {
+    "id": 1,
+    "first_name": "Thuan",
+    "last_name": "Luu",
+    "company": "Bavaan",
+    ...
+  }
+}
+```
+
+- Let’s test it out by sending a DELETE request to the /contacts/1 endpoint:
+
+```
+{
+  "data": true
+}
+```
