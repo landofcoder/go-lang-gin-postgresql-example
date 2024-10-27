@@ -9,6 +9,7 @@ import (
 func main() {
 	r := gin.Default()
 
+	models.InitEnv()
 	models.ConnectDatabase() // new
 
 	r.GET("/contacts", controllers.FindContacts) // new

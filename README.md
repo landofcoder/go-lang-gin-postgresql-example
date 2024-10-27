@@ -19,7 +19,7 @@ Make sure you run this command inside your Go environment folder:
 Now let’s install [Gin](https://github.com/gin-gonic/gin) and [Gorm](https://github.com/jinzhu/gorm) packages:
 
 ``go get github.com/gin-gonic/gin gorm.io/gorm gorm.io/driver/postgres``
-
+``go get github.com/joho/godotenv``
 
 ## Setting up the server
 

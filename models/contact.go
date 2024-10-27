@@ -34,7 +34,7 @@ type CreateContactInput struct {
 }
 
 type UpdateContactInput struct {
-	FirstName   string `json:"fist_name"`
+	FirstName   string `json:"first_name"`
 	LastName    string `json:"last_name"`
 	PhoneNumber string `json:"phone_number"`
 	Address     string `json:"address"`

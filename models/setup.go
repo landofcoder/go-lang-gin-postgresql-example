@@ -3,13 +3,14 @@ package models
 import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"os"
 )
 
 var DB *gorm.DB
 
 func ConnectDatabase() {
 
-	dsn := "host=localhost user=root password=simplecrm2024 dbname=crm_db port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := "host=localhost user=" + os.Getenv("POSTGRES_USER") + " password=" + os.Getenv("POSTGRES_PASSWORD") + " dbname=" + os.Getenv("POSTGRES_DB") + " port=" + os.Getenv("DB_POST") + " sslmode=disable TimeZone=Asia/Shanghai"
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
