@@ -247,3 +247,10 @@ The result should be as follows:
   "data": true
 }
 ```
+
+If we fetch all books in /contacts, we’ll see an empty array again:
+```
+{
+  "data": []
+}
+```
